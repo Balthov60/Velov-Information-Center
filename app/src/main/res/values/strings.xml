@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Velo\'v Information Center</string>
+
+    <string name="station_item_logo">status of the station</string>
+    <string name="available_bikes_text">%d places libres</string>
+    <string name="available_places_text">%d vélos</string>
+    <string name="address_text">Adresse : %s</string>
+    <string name="bonus_text">Bonus %s</string>
+    <string name="payment_text">Borne Paiement %s</string>
+    <string name="time_text">Mise à jour il y a %d minutes et %d secondes</string>
+    <string name="separator_content_description">graphic_separator</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="splashscreen">splashScreen</string>
+    <string name="refresh_menu_item">refresh</string>
+</resources>

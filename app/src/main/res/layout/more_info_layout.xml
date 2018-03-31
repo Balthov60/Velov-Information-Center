@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/more_info_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:src="@mipmap/logo_status_on"
+        android:contentDescription="@string/station_item_logo" />
+
+    <TextView tools:text="Ma super station velov"
+        android:id="@+id/more_info_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+
+        app:layout_constraintTop_toTopOf="@id/more_info_logo"
+        app:layout_constraintBottom_toBottomOf="@id/more_info_logo"
+        app:layout_constraintStart_toEndOf="@id/more_info_logo"
+
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="25sp"/>
+
+    <TextView tools:text="Adresse : Ma super adresse"
+        android:id="@+id/more_info_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/more_info_logo"
+
+        android:textSize="23sp"
+        />
+
+    <ImageView
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="10dp"
+
+        android:background="#000000"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/more_info_address"
+        android:contentDescription="@string/separator_content_description" />
+
+    <TextView tools:text="21 places libres"
+        android:id="@+id/more_info_available_places"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintEnd_toStartOf="@id/more_info_available_bikes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator"
+
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_field_size"/>
+
+    <TextView tools:text="13 vélos"
+        android:id="@+id/more_info_available_bikes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/more_info_available_places"
+        app:layout_constraintTop_toBottomOf="@id/separator"
+
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_field_size"/>
+
+    <TextView tools:text="Bonus : OUI"
+        android:id="@+id/more_info_bonus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+
+        app:layout_constraintEnd_toStartOf="@id/more_info_available_bikes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/more_info_available_places"
+
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_field_size"/>
+
+    <TextView tools:text="Borne Paiement : OUI"
+        android:id="@+id/more_info_payment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/more_info_available_places"
+        app:layout_constraintTop_toBottomOf="@id/more_info_available_places"
+
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_field_size"/>
+
+    <TextView tools:text="Mise à jour il y a 10 minutes"
+        android:id="@+id/more_info_update"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/more_info_bonus"
+
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_field_size"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/station_item_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:src="@mipmap/logo_status_on"
+        android:contentDescription="@string/station_item_logo" />
+
+    <TextView tools:text="Ma super station velov"
+        android:id="@+id/station_item_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/station_item_logo"
+        app:layout_constraintTop_toTopOf="@id/station_item_logo"
+
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_title_size"/>
+
+    <TextView tools:text="23 rue de machin juste a coté de."
+        android:id="@+id/station_item_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/station_item_logo"
+        app:layout_constraintTop_toBottomOf="@id/station_item_name"
+        app:layout_constraintBottom_toTopOf="@id/station_item_available_bikes"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_field_size"
+        android:lines="2"/>
+
+    <TextView tools:text="21 places libres"
+        android:id="@+id/station_item_available_places"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toStartOf="@id/station_item_available_bikes"
+        app:layout_constraintStart_toEndOf="@id/station_item_logo"
+        app:layout_constraintBottom_toBottomOf="@id/station_item_logo"
+
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_field_size"/>
+
+    <TextView tools:text="13 vélos"
+        android:id="@+id/station_item_available_bikes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/station_item_available_places"
+        app:layout_constraintBottom_toBottomOf="@id/station_item_logo"
+
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="@dimen/item_field_size"/>
+
+</android.support.constraint.ConstraintLayout>
