@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Velo\'v Information Center</string>
+    <string name="app_name">Velo\'v Center</string>
 
     <string name="station_item_logo">status of the station</string>
     <string name="available_bikes_text">%d places libres</string>
@@ -12,4 +12,10 @@
     <string name="title_activity_maps">Map</string>
     <string name="splashscreen">splashScreen</string>
     <string name="refresh_menu_item">refresh</string>
+    <string name="map">map</string>
+    <string name="favorite">Ajouter au favoris</string>
+    <string name="path">itinéraire depuis ma position</string>
+    <string name="all_stations">Toutes les stations</string>
+    <string name="favorite_stations">Mes Stations</string>
+    <string name="remove_favorite">supprimer des favoris</string>
 </resources>

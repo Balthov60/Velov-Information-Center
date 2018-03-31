@@ -53,12 +53,7 @@ public class StationListAdapter extends ArrayAdapter<Station> {
         if (!station.isOpen())
             viewHolder.logo.setImageResource(R.mipmap.logo_status_off);
 
-        String name = station.getName();
-        if (name.contains(" - "))
-            name = name.split(" - ")[1];
-        if (name.contains("- "))
-            name = name.split("- ")[1];
-        viewHolder.name.setText(name);
+        viewHolder.name.setText(station.getName());
         viewHolder.address.setText(station.getAddress());
 
         String temp = context.getString(R.string.available_bikes_text, station.getAvailableBikes());

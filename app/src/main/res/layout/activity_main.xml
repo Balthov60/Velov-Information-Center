@@ -8,15 +8,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <ImageView tools:visibility="gone"
         android:id="@+id/splashScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/splashscreen"
         android:contentDescription="@string/splashscreen" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button style="@style/Widget.AppCompat.ButtonBar"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/all_stations_button"
+            android:background="#CCCCCC"
+            android:text="@string/all_stations"
+
+            android:onClick="displayAllStations"/>
+
+        <Button style="@style/Base.Widget.AppCompat.ButtonBar"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/favorites_stations_button"
+            android:background="#CCCCCC"
+            android:text="@string/favorite_stations"
+
+            android:onClick="displayMyStations"/>
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ListView
+        android:id="@+id/listViewFavorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

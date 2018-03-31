@@ -1,13 +1,13 @@
 package fr.iutmindfuck.velovinformationcenter.data;
 
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.Locale;
 
-public class Station {
+public class Station implements Serializable {
+    private String id;
     private String name;
     private String address;
 
@@ -42,6 +42,18 @@ public class Station {
         this.availableBikeStands = object.optInt("available_bike_stands");
 
         this.lastUpdate = object.optLong("last_update");
+
+        if (name.contains(" - "))
+        {
+            this.id = name.split(" - ")[0];
+            this.name = name.split(" - ")[1];
+        }
+        else if (name.contains("- "))
+        {
+            this.id = name.split("- ")[0];
+
+            this.name = name.split("- ")[1];
+        }
     }
     public String getDurationSinceLastUpdate()
     {
@@ -50,6 +62,11 @@ public class Station {
         long minute = (millis / (1000 * 60));
 
         return String.format(Locale.getDefault(), "Mise à jour il y a %d minutes et %d secondes", minute, second);
+    }
+
+    public String getId()
+    {
+        return id;
     }
 
     public String getName() {
