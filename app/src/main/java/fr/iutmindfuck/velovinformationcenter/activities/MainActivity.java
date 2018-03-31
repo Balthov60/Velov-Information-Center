@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +19,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements TaskCallbackHandl
     private ArrayList<Station> favoriteStations;
     private StationListAdapter basicAdapter;
     private StationListAdapter favoriteAdapter;
-
     private ListView favoriteList;
     private ListView basicList;
 
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements TaskCallbackHandl
     private Boolean splashScreenMinimumTimeOver;
     private Boolean requestEnded = false;
 
+    private Boolean dataLoaded = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,27 @@ public class MainActivity extends AppCompatActivity implements TaskCallbackHandl
 
         fullscreen();
         setList();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (stations.isEmpty()) return;
+        File file = new File(getFilesDir(), "stations.save");
+
+        try
+        {
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            oos.writeObject(stations);
+            oos.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /* Initialisation */
@@ -235,26 +259,49 @@ public class MainActivity extends AppCompatActivity implements TaskCallbackHandl
         {
             Toast.makeText(this, "Pas de connexion internet... Connectez vous puis "
                                             + "rafraichissez la page", Toast.LENGTH_LONG).show();
-            return;
+
+            if (!dataLoaded) useOfflineData();
+        }
+        else
+        {
+            if (!splashScreenActive) Toast.makeText(this, "Données mise a jour", Toast.LENGTH_LONG).show();
+            dataLoaded = true;
+            stations.clear();
+            stations.addAll((ArrayList<Station>) data);
         }
 
-        stations.clear();
-        stations.addAll((ArrayList<Station>) data);
         basicAdapter.notifyDataSetChanged();
-
         updateFavoriteList();
 
         if (splashScreenActive && splashScreenMinimumTimeOver) leaveSplashScreen();
     }
 
+    private void useOfflineData() {
+        File file = new File(getFilesDir(), "stations.save");
+        if (!file.exists()) return;
+
+        try
+        {
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            stations.clear();
+            stations.addAll((ArrayList<Station>) ois.readObject());
+            ois.close();
+        }
+        catch (IOException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }
     private void updateFavoriteList() {
         favoriteStations.clear();
         Set<String> favoriteIds = getFavoritesStationsID();
+
         for (Station station : stations)
-        {
             if (favoriteIds.contains(station.getId()))
                 favoriteStations.add(station);
-        }
+
         favoriteAdapter.notifyDataSetChanged();
     }
 
