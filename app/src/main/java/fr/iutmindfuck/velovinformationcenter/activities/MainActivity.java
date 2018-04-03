@@ -207,7 +207,11 @@ public class MainActivity extends AppCompatActivity implements TaskCallbackHandl
                 return true;
 
             case R.id.action_navigate:
-                Toast.makeText(this, "navigation", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, MapsActivity.class);
+                intent.putExtra("stations", stations);
+                intent.putExtra("lat", stations.get(index).getLatitude());
+                intent.putExtra("lon", stations.get(index).getLongitude());
+                startActivity(intent);
                 return true;
 
             default:
@@ -244,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements TaskCallbackHandl
     public Set<String> getFavoritesStationsID()
     {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        return sharedPreferences.getStringSet("Lyon",new HashSet<String>());
+        return sharedPreferences.getStringSet("Lyon", new HashSet<String>());
     }
 
     /* Task */

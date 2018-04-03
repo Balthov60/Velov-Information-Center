@@ -19,6 +19,7 @@ import fr.iutmindfuck.velovinformationcenter.data.Station;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private ArrayList<Station> stations;
+    double lat, lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +30,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
+        lat = getIntent().getDoubleExtra("lat", 45.760);
+        lon = getIntent().getDoubleExtra("lon", 4.8357);
         stations = (ArrayList<Station>) getIntent().getSerializableExtra("stations");
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng lyon = new LatLng(45.760, 4.8357);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(lyon));
+        LatLng lyon = new LatLng(lat, lon);
+
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(lyon));
 
         for (Station station : stations)
         {
@@ -52,7 +57,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     {
         float color = BitmapDescriptorFactory.HUE_GREEN;
 
-        if (station.getAvailableBikes() == 0)
+        if (station.getLatitude() == lat && station.getLongitude() == lon)
+        {
+            color = BitmapDescriptorFactory.HUE_BLUE;
+        }
+        else if (station.getAvailableBikes() == 0)
         {
             color = BitmapDescriptorFactory.HUE_RED;
         }

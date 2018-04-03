@@ -14,7 +14,7 @@
     <string name="refresh_menu_item">refresh</string>
     <string name="map">map</string>
     <string name="favorite">Ajouter au favoris</string>
-    <string name="path">itinéraire depuis ma position</string>
+    <string name="path">Afficher sur la carte</string>
     <string name="all_stations">Toutes les stations</string>
     <string name="favorite_stations">Mes Stations</string>
     <string name="remove_favorite">supprimer des favoris</string>
